@@ -129,6 +129,10 @@ export default function App() {
       a: "Dann übernehmen wir die Anpassungen für dich. Je nach Paket profitierst du von reduzierten Entwicklerstundensätzen: 120 €/h in Static Care, 100 €/h in CMS Care und 80 €/h in Growth Care."
     },
     {
+      q: "Was macht Concrete CMS besonders in der langfristigen Zusammenarbeit mit Concrete?",
+      a: "Concrete CMS ist technisch deutlich weiterentwickelter als eine klassische WordPress-Lösung und auf langfristige Weiterentwicklung ausgelegt. Besonders in CMS Care und Growth Care können neue Inhalte, Module und Funktionen durch moderne KI-Workflows effizienter umgesetzt werden. Dadurch sinken zusätzliche Entwicklerkosten und Entwicklungszeiten deutlich. Als Agentur können wir direkt im CMS gestalten, erweitern und optimieren, ohne für jede Anpassung separate Entwicklerleistungen einkaufen zu müssen."
+    },
+    {
       q: "Wie unterscheiden sich die SEO-Optimierungen?",
       a: "Static Care kommt mit technischer Basis-SEO für bessere Auffindbarkeit: schnelle Ladezeiten, indexierbare Seiten, saubere Metadaten und stabile statische Auslieferung. CMS Care erweitert das um pflegbare SEO-Felder für Seiten und Inhalte. Growth Care ergänzt eine stärkere Struktur für Landingpages, Kampagnen, Analytics-Auswertung und laufende Optimierungen."
     },
