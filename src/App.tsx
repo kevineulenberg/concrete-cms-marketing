@@ -36,9 +36,10 @@ export default function App() {
       description: "Für einfache Websites, die zuverlässig online bleiben sollen und nur selten geändert werden.",
       features: [
         "Statisches Managed Hosting",
-        "Schnell, sicher und wartungsarm",
+        "SSL-Zertifikat inklusive",
+        "Globales CDN für schnelle Ladezeiten weltweit",
+        "10 GB Storage für Bilder, Downloads und kleine Videos",
         "SEO-Optimierungen für bessere Auffindbarkeit",
-        "Deployment-Backup für deine veröffentlichte Website",
         "Basic Security Monitoring",
         "Änderungen jederzeit durch unser Team möglich"
       ],
