@@ -374,7 +374,7 @@ export default function App() {
             <div className="bg-[#E65F2B] text-white rounded-3xl p-8 flex flex-col justify-between gap-6">
               <span className="font-mono text-[10px] uppercase tracking-widest font-bold text-white/75">Kostenhebel</span>
               <p className="font-display text-xl sm:text-2xl font-normal uppercase tracking-normal leading-tight">
-                Schon ab ca. 3 Stunden Weiterentwicklung pro Monat ist Growth Care günstiger als Static Care.
+                Schon ab ca. 1,5 Stunden Weiterentwicklung pro Monat lohnt sich Growth Care gegenüber dem regulären Stundensatz.
               </p>
               <a
                 href="#pricing"
