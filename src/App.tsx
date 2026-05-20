@@ -6,6 +6,7 @@ import {
   Globe 
 } from 'lucide-react'
 import logoImg from './assets/logo.webp'
+import concreteFooterLogoImg from './assets/concrete.svg'
 import cmsCollageImg from './assets/headless-cms-collage.webp'
 import HeroCanvas from './components/HeroCanvas'
 
@@ -460,12 +461,13 @@ export default function App() {
       <footer className="bg-black text-[#A0A0A0] border-t border-white/5 py-12 text-xs sm:text-sm">
         <div className="max-w-7xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-3">
-            <img src={logoImg} alt="Concrete CMS Logo" className="h-6 w-auto opacity-80" />
+            <img src={concreteFooterLogoImg} alt="Concrete CMS Logo" className="h-5 w-auto opacity-90 invert" />
             <span className="font-mono text-xs uppercase tracking-wider font-semibold">Concrete CMS</span>
           </div>
           <div className="flex flex-wrap justify-center gap-8 font-mono text-[10px] uppercase tracking-widest">
             <a href="#pricing" className="hover:text-white transition-colors">Care-Pläne</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
+            <a href="https://www.concrete-designs.de/" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Concrete Designs</a>
           </div>
           <div className="text-[10px] font-mono tracking-wider">
             © {new Date().getFullYear()} Concrete CMS. CARE Pakete für deine Website.
