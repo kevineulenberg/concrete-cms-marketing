@@ -50,7 +50,7 @@ export default function App() {
         { label: "CMS", value: "Nicht enthalten" },
         { label: "SEO", value: "Optimiert" },
         { label: "Reaktionszeit", value: "3-5 Werktage" },
-        { label: "Stundensatz", value: "120 €/h", emphasized: true }
+        { label: "Stundensatz", value: "100 €/h", emphasized: true }
       ]
     },
     {
@@ -127,7 +127,7 @@ export default function App() {
     },
     {
       q: "Was passiert, wenn ich Hilfe bei Änderungen brauche?",
-      a: "Dann übernehmen wir die Anpassungen für dich. Je nach Paket profitierst du von reduzierten Entwicklerstundensätzen: 120 €/h in Static Care, 100 €/h in CMS Care und 80 €/h in Growth Care."
+      a: "Dann übernehmen wir die Anpassungen für dich. Je nach Paket profitierst du von reduzierten Entwicklerstundensätzen: 100 €/h in Static Care, 100 €/h in CMS Care und 80 €/h in Growth Care."
     },
     {
       q: "Was macht Concrete CMS besonders in der langfristigen Zusammenarbeit mit Concrete?",
@@ -374,7 +374,7 @@ export default function App() {
             <div className="bg-[#E65F2B] text-white rounded-3xl p-8 flex flex-col justify-between gap-6">
               <span className="font-mono text-[10px] uppercase tracking-widest font-bold text-white/75">Kostenhebel</span>
               <p className="font-display text-xl sm:text-2xl font-normal uppercase tracking-normal leading-tight">
-                Schon ab ca. 1,5 Stunden Weiterentwicklung pro Monat ist Growth Care günstiger als Static Care.
+                Schon ab ca. 3 Stunden Weiterentwicklung pro Monat ist Growth Care günstiger als Static Care.
               </p>
               <a
                 href="#pricing"

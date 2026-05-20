@@ -31,6 +31,8 @@ Alle relevanten Änderungen an der Concrete CMS Marketing-Landingpage.
 - Growth Care als empfohlenes Paket hervorgehoben.
 - Growth Care um Mehrsprachigkeit, Video Hosting, höhere Besucherzahlen, Google Analytics Dashboard und API-Schnittstellen erweitert.
 - Reaktionszeit im Growth Care Paket auf `Innerhalb von 24 Stunden` gesetzt.
+- Static Care um SSL, globales CDN, 10 GB Storage und Hosting für kleine Videos erweitert.
+- Entwicklerstundensatz im Static Care Paket auf `100 €/h` gesetzt.
 - Value-Copy von `Änderbarkeit` auf `Flexibilität` umgestellt.
 - SEO-Argumentation gestärkt:
   - Static Care mit Basis-SEO.
