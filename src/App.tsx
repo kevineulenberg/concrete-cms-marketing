@@ -6,114 +6,142 @@ import {
   Globe 
 } from 'lucide-react'
 import logoImg from './assets/logo.webp'
+import cmsCollageImg from './assets/headless-cms-collage.webp'
 import HeroCanvas from './components/HeroCanvas'
 
 interface PricingPlan {
   name: string;
-  price: number;
+  price: string;
   description: string;
   badge?: string;
   features: string[];
   cta: string;
   highlighted: boolean;
-  specs: {
-    storage: string;
-    bandwidth: string;
-    sla: string;
-  };
+  details: {
+    label: string;
+    value: string;
+    emphasized?: boolean;
+  }[];
 }
 
 export default function App() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
-  const [selectedPlan, setSelectedPlan] = useState<string>("Professional");
+  const [selectedPlan, setSelectedPlan] = useState<string>("Growth Care");
 
   const plans: PricingPlan[] = [
     {
-      name: "Core",
-      price: 60,
-      description: "Für schnelle visuelle Websites, Designstudios und Standard-Produktionsseiten, die ein extrem performantes Hosting benötigen.",
+      name: "Static Care",
+      price: "69,90",
+      description: "Für einfache Websites, die zuverlässig online bleiben sollen und nur selten geändert werden.",
       features: [
-        "Visuelle Bearbeitung direkt im Kontext",
-        "Automatisierte Core-Updates & Sicherheits-Patches",
-        "Tägliche verschlüsselte Offsite-Backups (30 Tage Aufbewahrung)",
-        "Globales Edge CDN mit DDOS-Schutz",
-        "Kostenlose SSL-Zertifikate (Let's Encrypt)",
-        "Erweiterter SEO- & Metadaten-Manager",
-        "Core-Blockbibliothek & Layout-Builder"
+        "Statisches Managed Hosting",
+        "Schnell, sicher und wartungsarm",
+        "SEO-Optimierungen für bessere Auffindbarkeit",
+        "Deployment-Backup für deine veröffentlichte Website",
+        "Basic Security Monitoring",
+        "Änderungen jederzeit durch unser Team möglich"
       ],
-      cta: "Core-Instanz bereitstellen",
+      cta: "Einfach online bleiben",
       highlighted: false,
-      specs: {
-        storage: "10 GB High-Speed-SSD",
-        bandwidth: "Unbegrenzt",
-        sla: "Standard-Helpdesk"
-      }
+      details: [
+        { label: "Hosting", value: "Statische Website" },
+        { label: "CMS", value: "Nicht enthalten" },
+        { label: "SEO", value: "Optimiert" },
+        { label: "Reaktionszeit", value: "3-5 Werktage" },
+        { label: "Stundensatz", value: "120 €/h", emphasized: true }
+      ]
     },
     {
-      name: "Professional",
-      price: 90,
-      badge: "Sehr Beliebt",
-      description: "Für kollaborative Teams, Agentur-Portfolios und professionelle Publishing-Setups mit hohem Content-Aufkommen.",
+      name: "CMS Care",
+      price: "99,90",
+      badge: "Beliebte Wahl",
+      description: "Für Teams, die Inhalte selbst ändern und unabhängiger von laufender Entwicklung bleiben möchten.",
       features: [
-        "Alles aus dem Core-Tarif",
-        "Dedizierte Staging-Umgebung mit 1-Klick-Synchronisation",
-        "Erweiterte benutzerdefinierte Berechtigungen & redaktionelle Workflows",
-        "Multi-Website-Management-Dashboard",
-        "Visuelle Versionierung & Rollback-Verlauf",
-        "Erweiterte Sicherheit & Web Application Firewall (WAF)",
-        "Premium-API-Zugang & nativer Webhooks-Support"
+        "Concrete CMS inklusive",
+        "Texte, Bilder und vorbereitete Module selbst pflegen",
+        "2 CMS-Nutzer enthalten",
+        "Erweiterte SEO-Optimierungen für CMS-Inhalte",
+        "Managed CMS Hosting mit Updates und Backups",
+        "Reduzierter Stundensatz für Weiterentwicklung"
       ],
-      cta: "Mit Professional skalieren",
+      cta: "Selbst Inhalte pflegen",
+      highlighted: false,
+      details: [
+        { label: "Hosting", value: "Managed CMS" },
+        { label: "CMS", value: "2 Nutzer" },
+        { label: "SEO", value: "Erweitert" },
+        { label: "Reaktionszeit", value: "1-2 Werktage" },
+        { label: "Stundensatz", value: "100 €/h", emphasized: true }
+      ]
+    },
+    {
+      name: "Growth Care",
+      price: "124,90",
+      badge: "Empfohlen",
+      description: "Für Unternehmen und Agenturen, die ihre Website laufend erweitern und Entwicklungskosten senken wollen.",
+      features: [
+        "Alles aus CMS Care",
+        "5 CMS-Nutzer enthalten",
+        "Priorisierte Betreuung für laufende Änderungen",
+        "Ideal für Video Hosting und höhere Besucherzahlen",
+        "Mehrsprachigkeit für internationale Websites",
+        "Google Analytics Integration direkt im Dashboard",
+        "Erweiterte SEO-Struktur für Kampagnen und Landingpages",
+        "Integration und Betreuung zusätzlicher API-Schnittstellen möglich",
+        "KI-gestützte, agentic Workflows bevorzugt verfügbar"
+      ],
+      cta: "Flexibel wachsen",
       highlighted: true,
-      specs: {
-        storage: "50 GB NVMe-SSD-Speicher",
-        bandwidth: "Unbegrenzt (Hohe Priorität)",
-        sla: "8 Std. SLA Reaktionszeit"
-      }
-    },
-    {
-      name: "Enterprise",
-      price: 120,
-      description: "Für geschäftskritische Anwendungen, riesige Portale, strenge Compliance-Anforderungen und vollkommene architektonische Flexibilität.",
-      features: [
-        "Alles aus dem Professional-Tarif",
-        "Hochverfügbares, automatisch skalierendes Cluster-Setup",
-        "Dedizierte Datenbank- & Redis-Cache-Instanzen",
-        "Single Sign-On (SSO / SAML / OAuth)",
-        "Sicherheits-Audit-Trail & Log-Streaming auf Enterprise-Niveau",
-        "Individuelle Integrationsberatung (2 Std./Monat)",
-        "Notfall-Telefon-Hotline rund um die Uhr"
-      ],
-      cta: "Enterprise-Tarif anfordern",
-      highlighted: false,
-      specs: {
-        storage: "200 GB NVMe-Speicher",
-        bandwidth: "Unbegrenzt (Dedizierte Anbindung)",
-        sla: "1 Std. SLA-Garantie für kritische Fälle"
-      }
+      details: [
+        { label: "Hosting", value: "Managed CMS" },
+        { label: "CMS", value: "5 Nutzer" },
+        { label: "SEO", value: "Advanced" },
+        { label: "Reaktionszeit", value: "Innerhalb von 24 Stunden" },
+        { label: "Stundensatz", value: "80 €/h", emphasized: true }
+      ]
     }
   ];
 
   const faqs = [
     {
-      q: "Gibt es wirklich keine Einrichtungsgebühren oder versteckten Kosten?",
-      a: "Ja, absolut korrekt. Wir glauben an vollkommene Transparenz. Es gibt keinerlei Einrichtungsgebühren, Bereitstellungs- oder Bereitstellungskosten. Sie zahlen nur die feste monatliche Gebühr des von Ihnen gewählten Tarifs."
+      q: "Was ist Concrete CMS?",
+      a: "Concrete CMS ist unser Managed CMS auf Basis von Payload CMS und Next.js. Es wurde entwickelt, damit Websites nach dem Launch einfach gepflegt, erweitert und technisch betreut werden können."
     },
     {
-      q: "Kann ich meinen Tarif später upgraden oder downgraden?",
-      a: "Selbstverständlich. Sie können Ihren Cluster jederzeit direkt über die Concrete CMS Cloud-Konsole skalieren oder zwischen den Tarifen wechseln. Upgrades werden ohne Ausfallzeit sofort wirksam, und die Abrechnung erfolgt anteilig."
+      q: "Warum Concrete CMS statt WordPress?",
+      a: "Concrete CMS ist bewusst schlanker und kontrollierter aufgebaut. Du bekommst genau die Inhalte, Module und Bearbeitungsmöglichkeiten, die deine Website braucht, ohne ein schweres Plugin-System pflegen zu müssen. Das macht die Bedienung einfacher und reduziert typische Sicherheitsrisiken, weil weniger fremde Erweiterungen, weniger Wartungsaufwand und weniger Angriffsfläche im laufenden Betrieb entstehen."
     },
     {
-      q: "Wie funktioniert der 1-Klick-Staging-Sync im Professional-Tarif?",
-      a: "Wir stellen eine isolierte Shadow-Instanz Ihres Concrete CMS bereit. Sie können sicher Blöcke bauen, Themes testen oder neue Website-Architekturen entwerfen. Nach der Freigabe klicken Sie auf „In Produktion veröffentlichen“, um Ihre Änderungen sicher zu übertragen, ohne die Live-Website zu gefährden."
+      q: "Was ist der Unterschied zwischen Static Care und den CMS-Paketen?",
+      a: "Static Care hält eine fertige Website schnell und sicher online, enthält aber kein CMS zur Selbstpflege. CMS Care ergänzt Concrete CMS, damit du Inhalte selbst bearbeiten kannst. Growth Care ist für Websites gedacht, die regelmäßig erweitert werden."
     },
     {
-      q: "Was unterscheidet Concrete CMS Cloud von gewöhnlichem Hosting?",
-      a: "Klassisches Hosting ist verallgemeinert. Concrete CMS Cloud wurde auf Serverebene speziell für die Concrete PHP-Block-Engine entwickelt. Dies beinhaltet fein abgestimmten OPCache, angepasste Datenbank-Engines, automatische Core-Updates und direkte Optimierungen für die visuelle Bearbeitung."
+      q: "Kann ich meine Website selbst bearbeiten?",
+      a: "Ja, in den CMS-Paketen kannst du je nach Aufbau Texte, Bilder, Seitenbereiche, Module und strukturierte Inhalte direkt im CMS pflegen. Dadurch muss nicht jede kleine Änderung als Entwicklungsaufgabe geplant werden."
     },
     {
-      q: "Wo werden meine Daten gehostet und wie sicher sind sie?",
-      a: "Wir hosten Ihre Instanzen auf erstklassiger, ISO-zertifizierter europäischer und amerikanischer Cloud-Infrastruktur. Jeder Tarif beinhaltet ein Let's Encrypt SSL-Zertifikat, visuelle Sicherheitsverfolgung, tägliche Offsite-Backups und eine fortschrittliche Web Application Firewall (WAF)."
+      q: "Kann ich Concrete CMS mit jeder bestehenden Website verwenden?",
+      a: "Leider nicht als direkte Erweiterung für bestehende WordPress-Seiten oder bereits laufende Projekte. Concrete CMS ist ein maßgeschneidertes, optionales System für Concrete Kund:innen und wird im Rahmen neuer Website-Projekte konzipiert, die neu entwickelt und designed werden."
+    },
+    {
+      q: "Was passiert, wenn ich Hilfe bei Änderungen brauche?",
+      a: "Dann übernehmen wir die Anpassungen für dich. Je nach Paket profitierst du von reduzierten Entwicklerstundensätzen: 120 €/h in Static Care, 100 €/h in CMS Care und 80 €/h in Growth Care."
+    },
+    {
+      q: "Wie unterscheiden sich die SEO-Optimierungen?",
+      a: "Static Care kommt mit technischer Basis-SEO für bessere Auffindbarkeit: schnelle Ladezeiten, indexierbare Seiten, saubere Metadaten und stabile statische Auslieferung. CMS Care erweitert das um pflegbare SEO-Felder für Seiten und Inhalte. Growth Care ergänzt eine stärkere Struktur für Landingpages, Kampagnen, Analytics-Auswertung und laufende Optimierungen."
+    },
+    {
+      q: "Bin ich an euch gebunden?",
+      a: "Nein. Deine Website gehört dir. Das laufende CMS, Hosting und die technische Betreuung sind unsere Serviceleistung, aber du bekommst bei einer Kündigung einen statischen Export deiner Website."
+    },
+    {
+      q: "Was passiert, wenn ich kündige?",
+      a: "Du kannst monatlich kündigen. Wenn du ein CMS-Paket beendest, erhältst du einen statischen Export deiner Website, den du bei uns im Static Care Paket oder bei einem anderen Anbieter weiter hosten kannst."
+    },
+    {
+      q: "Welches Paket ist das richtige für mich?",
+      a: "Static Care passt, wenn deine Website fertig ist, sicher online bleiben und besser auffindbar sein soll. CMS Care ist die beste Wahl, wenn dein Team Inhalte selbst pflegen möchte. Growth Care empfehlen wir, wenn du regelmäßig neue Inhalte, Landingpages, Video-Inhalte oder Funktionen planst."
     }
   ];
 
@@ -126,22 +154,22 @@ export default function App() {
       
       {/* Dynamic Header */}
       <header className="sticky top-0 z-50 backdrop-blur-md bg-[#FAF9F6]/80 border-b border-black/5 transition-all duration-300">
-        <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 h-20 flex items-center justify-between">
           <a href="#" className="flex items-center group">
-            <img src={logoImg} alt="Concrete CMS Logo" className="h-12 w-auto max-w-[200px] object-contain transition-transform group-hover:scale-105" />
+            <img src={logoImg} alt="Concrete CMS Logo" className="h-8 sm:h-12 w-auto max-w-[150px] sm:max-w-[200px] object-contain transition-transform group-hover:scale-105" />
           </a>
 
           <nav className="hidden md:flex items-center gap-8 font-mono text-xs uppercase tracking-wider font-semibold">
-            <a href="#pricing" className="hover:text-[#E65F2B] transition-colors">Preismodelle</a>
-            <a href="#faq" className="hover:text-[#E65F2B] transition-colors">Technische FAQ</a>
+            <a href="#pricing" className="hover:text-[#E65F2B] transition-colors">Care-Pläne</a>
+            <a href="#faq" className="hover:text-[#E65F2B] transition-colors">FAQ</a>
           </nav>
 
           <div className="flex items-center gap-4">
             <a 
               href="#pricing" 
-              className="bg-[#121212] hover:bg-[#E65F2B] text-white px-5 py-2.5 rounded-full font-mono text-xs uppercase tracking-wider font-bold transition-all hover:scale-105 duration-300 inline-block shadow-sm"
+              className="bg-[#121212] hover:bg-[#E65F2B] text-white px-3 sm:px-5 py-2 sm:py-2.5 rounded-full font-mono text-[10px] sm:text-xs uppercase tracking-wider font-bold transition-all hover:scale-105 duration-300 inline-block shadow-sm whitespace-nowrap"
             >
-              Jetzt starten
+              Pläne ansehen
             </a>
           </div>
         </div>
@@ -155,18 +183,28 @@ export default function App() {
           
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/5 border border-black/5 text-xs font-mono font-medium tracking-wide mb-8">
             <span className="w-2 h-2 rounded-full bg-[#E65F2B] animate-pulse" />
-            CMS powered by Payload CMS
+            CARE Pakete für deine Website
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-8xl font-extrabold tracking-tight leading-[0.9] text-[#121212] mb-8 font-sans">
-            Brutale Einfachheit.<br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#121212] via-[#5F5F5F] to-[#E65F2B]">
-              Enterprise-Power.
+          <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-normal uppercase tracking-normal leading-[0.95] sm:leading-[0.9] text-[#121212] mb-8">
+            <span className="sm:hidden">
+              Deine Website<br />
+              bleibt schnell,<br />
+              sicher und<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#121212] via-[#5F5F5F] to-[#E65F2B]">
+                erweiterbar.
+              </span>
+            </span>
+            <span className="hidden sm:inline">
+              Deine Website bleibt schnell,<br />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#121212] via-[#5F5F5F] to-[#E65F2B]">
+                sicher und erweiterbar.
+              </span>
             </span>
           </h1>
 
           <p className="max-w-2xl mx-auto text-base sm:text-xl text-[#5F5F5F] font-sans font-normal leading-relaxed mb-12">
-            Das intuitivste, auf Payload CMS basierende Enterprise-CMS der Welt – das ultimative System zur Stärkung deiner Marke. Keine komplexen Setups, extreme Geschwindigkeit und vollkommene visuelle Freiheit auf jedem Bildschirm.
+            Ein modernes CMS für Websites, die nach dem Launch weiter wachsen. Hosting, Betreuung, Updates und flexible Weiterentwicklung in einem monatlichen Paket.
           </p>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -174,10 +212,50 @@ export default function App() {
               href="#pricing"
               className="w-full sm:w-auto bg-[#E65F2B] hover:bg-[#d04e1c] text-white px-8 py-4 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-all shadow-md hover:shadow-lg hover:scale-105 duration-300 flex items-center justify-center gap-2"
             >
-              Tarife entdecken <ArrowRight className="w-4 h-4" />
+              Care-Pläne ansehen <ArrowRight className="w-4 h-4" />
             </a>
           </div>
 
+        </div>
+      </section>
+
+      {/* CMS Simplicity Section */}
+      <section className="py-20 md:py-28 bg-[#FAF9F6] text-[#121212] overflow-hidden">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-10 lg:gap-14 items-center">
+            <div>
+              <span className="text-[#E65F2B] uppercase tracking-widest font-mono text-xs font-bold block mb-4">Einfach selbst pflegen</span>
+              <h2 className="text-3xl sm:text-5xl font-display font-normal uppercase tracking-normal leading-tight mb-6">
+                Content ändern, ohne WordPress-Chaos.
+              </h2>
+              <p className="text-[#5F5F5F] text-sm sm:text-base leading-relaxed mb-8 max-w-xl">
+                Concrete CMS zeigt deinem Team nur die Inhalte, Seiten und Module, die wirklich gebraucht werden. Texte, Bilder, Seitenstrukturen und Medien lassen sich kontrolliert bearbeiten, ohne dass ein komplexes Plugin-System gepflegt werden muss.
+              </p>
+
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                {[
+                  "Klare Felder statt überladener Admin-Oberflächen",
+                  "Vorbereitete Module für wiederkehrende Inhalte",
+                  "Bild- und Medienpflege direkt im Workflow",
+                  "Weniger Angriffsfläche durch kontrollierte Erweiterungen"
+                ].map((item) => (
+                  <div key={item} className="flex items-start gap-3 text-sm text-[#121212]">
+                    <Check className="w-4 h-4 text-[#E65F2B] shrink-0 mt-0.5" />
+                    <span>{item}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="relative">
+              <div className="absolute -inset-4 bg-[#E65F2B]/10 blur-3xl opacity-70" />
+              <img
+                src={cmsCollageImg}
+                alt="Concrete CMS Oberfläche mit visueller Inhaltsbearbeitung, Seitenstruktur und Medienverwaltung"
+                className="relative w-full rounded-[28px] border border-black/10 shadow-2xl shadow-black/20 object-cover"
+              />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -188,12 +266,12 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6">
           
           <div className="text-center max-w-3xl mx-auto mb-20">
-            <span className="text-[#E65F2B] uppercase tracking-widest font-mono text-xs font-bold block mb-4">Preisarchitektur</span>
-            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-6 font-sans">
-              Transparente monatliche Tarife.
+            <span className="text-[#E65F2B] uppercase tracking-widest font-mono text-xs font-bold block mb-4">Website Operations</span>
+            <h2 className="text-3xl sm:text-5xl font-display font-normal uppercase tracking-normal mb-6">
+              Static Care ist Hosting. CMS Care ist Kontrolle. Growth Care ist Wachstum.
             </h2>
             <p className="text-[#A0A0A0] font-sans text-sm sm:text-base leading-relaxed">
-              Wählen Sie das passende Tarifmodell, das mit Ihrer Marke und Ihrem Team wächst. Keine versteckten Gebühren, unbegrenzte visuelle Editoren und <strong className="text-white">dauerhaft kostenlose Einrichtung</strong>.
+              Wähle den Plan, der zu deinem Änderungsbedarf passt. Du kaufst nicht nur Serverplatz, sondern Sicherheit, Änderbarkeit, Support und niedrigere Weiterentwicklungskosten.
             </p>
           </div>
 
@@ -221,13 +299,13 @@ export default function App() {
                   <div>
                     {/* Header */}
                     <div className="mb-8">
-                      <span className="text-[#E65F2B] font-mono text-xs uppercase tracking-widest font-semibold">{plan.name}-Tarif</span>
+                      <span className="text-[#E65F2B] font-mono text-xs uppercase tracking-widest font-semibold">{plan.name}</span>
                       <div className="flex items-baseline gap-2 mt-3 mb-4">
                         <span className="text-5xl sm:text-6xl font-extrabold tracking-tight font-sans">€{plan.price}</span>
                         <span className="text-[#A0A0A0] text-xs font-mono uppercase tracking-wider">/ Monat</span>
                       </div>
                       <p className="text-xs text-[#A0A0A0] uppercase font-mono tracking-wider font-semibold border-b border-white/5 pb-4 mb-4 flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-[#E65F2B]" /> Einrichtung: €0 Kostenlos
+                        <Check className="w-3.5 h-3.5 text-[#E65F2B]" /> Monatlich kündbar
                       </p>
                       <p className="text-[#A0A0A0] text-xs sm:text-sm leading-relaxed">{plan.description}</p>
                     </div>
@@ -246,18 +324,14 @@ export default function App() {
                   {/* Specs & CTA */}
                   <div>
                     <div className="bg-black/30 p-5 rounded-2xl border border-white/5 mb-8 space-y-2.5">
-                      <div className="flex justify-between text-xs font-mono">
-                        <span className="text-[#A0A0A0]">Speicherkapazität:</span>
-                        <span className="text-white font-semibold">{plan.specs.storage}</span>
-                      </div>
-                      <div className="flex justify-between text-xs font-mono">
-                        <span className="text-[#A0A0A0]">Bandbreite:</span>
-                        <span className="text-white font-semibold">{plan.specs.bandwidth}</span>
-                      </div>
-                      <div className="flex justify-between text-xs font-mono">
-                        <span className="text-[#A0A0A0]">Support-Reaktionszeit:</span>
-                        <span className="text-[#E65F2B] font-semibold">{plan.specs.sla}</span>
-                      </div>
+                      {plan.details.map((detail) => (
+                        <div key={detail.label} className="grid grid-cols-[minmax(0,1fr)_auto] gap-3 text-xs font-mono">
+                          <span className="text-[#A0A0A0]">{detail.label}:</span>
+                          <span className={`${detail.emphasized ? 'text-[#E65F2B]' : 'text-white'} font-semibold text-right`}>
+                            {detail.value}
+                          </span>
+                        </div>
+                      ))}
                     </div>
 
                     <a 
@@ -277,23 +351,32 @@ export default function App() {
             })}
           </div>
 
-          {/* Pricing Highlight banner */}
-          <div className="mt-16 bg-[#181818] border border-white/5 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-8">
-            <div className="flex items-center gap-4">
+          {/* Trust and value box */}
+          <div className="mt-16 grid grid-cols-1 lg:grid-cols-[1.6fr_1fr] gap-6">
+            <div className="bg-[#181818] border border-white/5 rounded-3xl p-8 flex flex-col md:flex-row items-start gap-5">
               <div className="w-12 h-12 rounded-2xl bg-[#E65F2B]/10 border border-[#E65F2B]/20 flex items-center justify-center text-[#E65F2B] shrink-0">
                 <Globe className="w-6 h-6" />
               </div>
               <div>
-                <h4 className="font-sans font-bold text-lg">Benötigen Sie eine maßgeschneiderte Architektur oder ein hochvolumiges Multi-Site-Cluster?</h4>
-                <p className="text-xs sm:text-sm text-[#A0A0A0] mt-1">Wir konzipieren maßgeschneiderte Enterprise-Cloud-Frameworks, Bare-Metal-Isolation und spezialisierte Datenbank-Cluster.</p>
+                <h4 className="font-display font-normal uppercase tracking-normal text-lg">Monatlich kündbar. Deine Website bleibt deine Website.</h4>
+                <p className="text-xs sm:text-sm text-[#A0A0A0] mt-2 leading-relaxed">
+                  Du kannst dein Paket jederzeit monatlich kündigen. Wenn du ein CMS-Paket beendest, erhältst du einen statischen Export deiner Website, den du überall weiter hosten kannst. CMS, Bearbeitung und laufende Betreuung sind Teil des aktiven Managed Services.
+                </p>
               </div>
             </div>
-            <a 
-              href="#contact"
-              className="bg-white text-black hover:bg-[#FAF9F6] px-6 py-3 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-all shrink-0 hover:scale-105 duration-300"
-            >
-              Architekten kontaktieren
-            </a>
+            <div className="bg-[#E65F2B] text-white rounded-3xl p-8 flex flex-col justify-between gap-6">
+              <span className="font-mono text-[10px] uppercase tracking-widest font-bold text-white/75">Kostenhebel</span>
+              <p className="font-display text-xl sm:text-2xl font-normal uppercase tracking-normal leading-tight">
+                Schon ab ca. 1,5 Stunden Weiterentwicklung pro Monat ist Growth Care günstiger als Static Care.
+              </p>
+              <a
+                href="#pricing"
+                onClick={() => setSelectedPlan("Growth Care")}
+                className="inline-flex items-center justify-center gap-2 bg-white text-black hover:bg-[#FAF9F6] px-5 py-3 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-all self-start hover:scale-105 duration-300"
+              >
+                Growth ansehen <ArrowRight className="w-4 h-4" />
+              </a>
+            </div>
           </div>
 
         </div>
@@ -304,8 +387,8 @@ export default function App() {
         <div className="max-w-4xl mx-auto px-6">
           
           <div className="text-center mb-16">
-            <span className="text-[#E65F2B] uppercase tracking-widest font-mono text-xs font-bold block mb-4">Betriebshandbuch</span>
-            <h2 className="text-3xl sm:text-4xl font-extrabold tracking-tight font-sans">
+            <span className="text-[#E65F2B] uppercase tracking-widest font-mono text-xs font-bold block mb-4">Transparenz</span>
+            <h2 className="text-3xl sm:text-4xl font-display font-normal uppercase tracking-normal">
               Häufig gestellte Fragen
             </h2>
           </div>
@@ -332,7 +415,7 @@ export default function App() {
 
                   <div 
                     className={`transition-all duration-300 overflow-hidden ${
-                      isOpen ? 'max-h-60 border-t border-black/5' : 'max-h-0'
+                      isOpen ? 'max-h-[460px] border-t border-black/5' : 'max-h-0'
                     }`}
                   >
                     <p className="p-6 text-xs sm:text-sm text-[#5F5F5F] leading-relaxed">
@@ -351,23 +434,24 @@ export default function App() {
       <section id="contact" className="py-20 bg-gradient-to-b from-[#121212] to-black text-white text-center relative overflow-hidden">
         <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_center,rgba(230,95,43,0.04),transparent_60%)]" />
         <div className="max-w-4xl mx-auto px-6">
-          <span className="text-[#E65F2B] uppercase tracking-widest font-mono text-xs font-bold block mb-4">Sofort bereitstellen</span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight mb-8 font-sans">
-            Bereit, managed Concrete zu erleben?
+          <span className="text-[#E65F2B] uppercase tracking-widest font-mono text-xs font-bold block mb-4">Weiter wachsen</span>
+          <h2 className="text-3xl sm:text-5xl font-display font-normal uppercase tracking-normal mb-8">
+            Bereit für eine Website, die nach dem Launch weiter wächst?
           </h2>
           <p className="max-w-xl mx-auto text-[#A0A0A0] text-xs sm:text-sm leading-relaxed mb-12">
-            Erleben Sie blitzschnelles Rendering, direkte visuelle Seitengestaltung und eiserne Serversicherheit. Keine Einrichtungsgebühr, in wenigen Minuten startklar.
+            Betrieb, CMS, Support und flexible Weiterentwicklung in einem monatlichen Plan. Du bleibst unabhängig und kannst genau dort investieren, wo deine Website wachsen soll.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <button 
-              onClick={() => setSelectedPlan("Professional")}
+            <a
+              href="#pricing"
+              onClick={() => setSelectedPlan("Growth Care")}
               className="w-full sm:w-auto bg-[#E65F2B] hover:bg-[#d04e1c] text-white px-8 py-4 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-all shadow-md hover:scale-105 duration-300"
             >
-              Managed Cloud starten
-            </button>
-            <button className="w-full sm:w-auto bg-white/10 hover:bg-white/15 text-white px-8 py-4 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-colors">
-              Mit Engineering sprechen
-            </button>
+              Care-Pläne vergleichen
+            </a>
+            <a href="#faq" className="w-full sm:w-auto bg-white/10 hover:bg-white/15 text-white px-8 py-4 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-colors">
+              Fragen klären
+            </a>
           </div>
         </div>
       </section>
@@ -380,11 +464,11 @@ export default function App() {
             <span className="font-mono text-xs uppercase tracking-wider font-semibold">Concrete CMS</span>
           </div>
           <div className="flex flex-wrap justify-center gap-8 font-mono text-[10px] uppercase tracking-widest">
-            <a href="#pricing" className="hover:text-white transition-colors">Preismodelle</a>
-            <a href="#faq" className="hover:text-white transition-colors">Service-Handbuch</a>
+            <a href="#pricing" className="hover:text-white transition-colors">Care-Pläne</a>
+            <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </div>
           <div className="text-[10px] font-mono tracking-wider">
-            © {new Date().getFullYear()} Concrete Cloud. Alle Rechte vorbehalten. Einrichtung ist €0.
+            © {new Date().getFullYear()} Concrete CMS. CARE Pakete für deine Website.
           </div>
         </div>
       </footer>
