@@ -272,7 +272,7 @@ export default function App() {
               Static Care ist Hosting. CMS Care ist Kontrolle. Growth Care ist Wachstum.
             </h2>
             <p className="text-[#A0A0A0] font-sans text-sm sm:text-base leading-relaxed">
-              Wähle den Plan, der zu deinem Änderungsbedarf passt. Du kaufst nicht nur Serverplatz, sondern Sicherheit, Änderbarkeit, Support und niedrigere Weiterentwicklungskosten.
+              Wähle den Plan, der zu deinem Änderungsbedarf passt. Du kaufst nicht nur Serverplatz, sondern Sicherheit, Flexibilität, Support und niedrigere Weiterentwicklungskosten.
             </p>
           </div>
 
