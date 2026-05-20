@@ -189,7 +189,8 @@ export default function App() {
 
           <h1 className="text-4xl sm:text-6xl md:text-8xl font-display font-normal uppercase tracking-normal leading-[0.95] sm:leading-[0.9] text-[#121212] mb-8">
             <span className="sm:hidden">
-              Deine Website<br />
+              Deine neue<br />
+              Webseite<br />
               bleibt schnell,<br />
               sicher und<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#121212] via-[#5F5F5F] to-[#E65F2B]">
@@ -197,7 +198,7 @@ export default function App() {
               </span>
             </span>
             <span className="hidden sm:inline">
-              Deine Website bleibt schnell,<br />
+              Deine neue Webseite bleibt schnell,<br />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#121212] via-[#5F5F5F] to-[#E65F2B]">
                 sicher und erweiterbar.
               </span>
