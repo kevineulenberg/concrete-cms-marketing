@@ -314,6 +314,7 @@ export default function App() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
             {plans.map((plan) => {
               const isSelected = selectedPlan === plan.name;
+              const [euroPrice, centPrice] = plan.price.split(",");
               return (
                 <div 
                   key={plan.name}
@@ -336,7 +337,10 @@ export default function App() {
                     <div className="mb-8">
                       <span className="text-[#E65F2B] font-mono text-xs uppercase tracking-widest font-semibold">{plan.name}</span>
                       <div className="flex items-baseline gap-2 mt-3 mb-4">
-                        <span className="text-5xl sm:text-6xl font-extrabold tracking-tight font-sans">€{plan.price}</span>
+                        <span className="font-sans font-extrabold tracking-tight">
+                          <span className="text-5xl sm:text-6xl">€{euroPrice}</span>
+                          <sup className="align-super text-xl sm:text-2xl ml-1">,{centPrice}</sup>
+                        </span>
                         <span className="text-[#A0A0A0] text-xs font-mono uppercase tracking-wider">/ Monat</span>
                       </div>
                       <p className="text-xs text-[#A0A0A0] uppercase font-mono tracking-wider font-semibold border-b border-white/5 pb-4 mb-4 flex items-center gap-2">
