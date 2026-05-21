@@ -62,14 +62,17 @@ export default function App() {
         "Concrete CMS inklusive",
         "Texte, Bilder und vorbereitete Module selbst pflegen",
         "2 CMS-Nutzer enthalten",
+        "Managed Hosting inklusive",
+        "Keine separate Hosting-Gebühr. Deine Website läuft betreut in unserer Infrastruktur.",
         "Erweiterte SEO-Optimierungen für CMS-Inhalte",
-        "Managed CMS Hosting mit Updates und Backups",
+        "Updates, Backups und CMS-Betrieb inklusive",
         "Reduzierter Stundensatz für Weiterentwicklung"
       ],
       cta: "Selbst Inhalte pflegen",
       highlighted: false,
       details: [
         { label: "Hosting", value: "Managed CMS" },
+        { label: "Hosting-Gebühr", value: "Inklusive" },
         { label: "CMS", value: "2 Nutzer" },
         { label: "SEO", value: "Erweitert" },
         { label: "Reaktionszeit", value: "1-2 Werktage" },
@@ -84,18 +87,22 @@ export default function App() {
       features: [
         "Alles aus CMS Care",
         "5 CMS-Nutzer enthalten",
+        "Managed Hosting inklusive",
+        "Keine separate Hosting-Gebühr. Deine Website läuft betreut in unserer Infrastruktur.",
         "Priorisierte Betreuung für laufende Änderungen",
         "Ideal für Video Hosting und höhere Besucherzahlen",
         "Mehrsprachigkeit für internationale Websites",
         "Google Analytics Integration direkt im Dashboard",
         "Erweiterte SEO-Struktur für Kampagnen und Landingpages",
         "Integration und Betreuung zusätzlicher API-Schnittstellen möglich",
+        "Self-Hosting auf Anfrage möglich",
         "KI-gestützte, agentic Workflows bevorzugt verfügbar"
       ],
       cta: "Flexibel wachsen",
       highlighted: true,
       details: [
         { label: "Hosting", value: "Managed CMS" },
+        { label: "Hosting-Gebühr", value: "Inklusive" },
         { label: "CMS", value: "5 Nutzer" },
         { label: "SEO", value: "Advanced" },
         { label: "Reaktionszeit", value: "Innerhalb von 24 Stunden" },
@@ -136,6 +143,18 @@ export default function App() {
     {
       q: "Wie unterscheiden sich die SEO-Optimierungen?",
       a: "Static Care kommt mit technischer Basis-SEO für bessere Auffindbarkeit: schnelle Ladezeiten, indexierbare Seiten, saubere Metadaten und stabile statische Auslieferung. CMS Care erweitert das um pflegbare SEO-Felder für Seiten und Inhalte. Growth Care ergänzt eine stärkere Struktur für Landingpages, Kampagnen, Analytics-Auswertung und laufende Optimierungen."
+    },
+    {
+      q: "Wo wird meine Website gehostet?",
+      a: "Auf Wunsch hosten wir deine Website DSGVO-konform auf VPS-Servern in Deutschland oder innerhalb Europas, zum Beispiel über Hetzner-Infrastruktur. Damit bleiben Hosting, Betrieb und technische Betreuung klar nachvollziehbar und für Datenschutzanforderungen im europäischen Raum geeignet."
+    },
+    {
+      q: "Ist Hosting in CMS Care und Growth Care enthalten?",
+      a: "Ja. In CMS Care und Growth Care ist das Managed Hosting bereits in der monatlichen Subscription enthalten. Es gibt keine separate Hosting-Gebühr. Wir übernehmen Betrieb, technische Betreuung und CMS-Bereitstellung, damit du dich nicht selbst um Server, Wartung oder Infrastrukturkosten kümmern musst."
+    },
+    {
+      q: "Kann ich Concrete CMS auch selbst hosten?",
+      a: "Ja, Self-Hosting ist grundsätzlich möglich. In diesem Fall läuft Concrete CMS über eine Lizenzvereinbarung und einen aktiven Lizenz-Key. Das CMS kann auf einem eigenen Server genutzt werden, solange eine aktive CMS Care oder Growth Care Subscription besteht. Wichtig: Self-Hosting ersetzt nicht die Subscription. Nach einer Kündigung kann die Website weiterhin als statische Version selbst gehostet werden, der Zugriff auf die CMS-Oberfläche und die laufende CMS-Betreuung sind dann aber nicht mehr enthalten."
     },
     {
       q: "Bin ich an euch gebunden?",
@@ -422,7 +441,7 @@ export default function App() {
 
                   <div 
                     className={`transition-all duration-300 overflow-hidden ${
-                      isOpen ? 'max-h-[460px] border-t border-black/5' : 'max-h-0'
+                      isOpen ? 'max-h-[620px] border-t border-black/5' : 'max-h-0'
                     }`}
                   >
                     <p className="p-6 text-xs sm:text-sm text-[#5F5F5F] leading-relaxed">

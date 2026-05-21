@@ -2,6 +2,18 @@
 
 Alle relevanten Änderungen an der Concrete CMS Marketing-Landingpage.
 
+## 2026-05-21
+
+### Added
+- DSGVO-Hinweis im FAQ ergänzt: Hosting auf Wunsch auf VPS-Servern in Deutschland oder innerhalb Europas, zum Beispiel über Hetzner-Infrastruktur.
+- FAQ ergänzt, dass Managed Hosting in `CMS Care` und `Growth Care` bereits in der monatlichen Subscription enthalten ist.
+- FAQ zu Self-Hosting ergänzt: Nutzung über Lizenzvereinbarung und aktiven Lizenz-Key, solange eine aktive `CMS Care` oder `Growth Care` Subscription besteht.
+- Pricing-Features für `CMS Care` und `Growth Care` um `Managed Hosting inklusive` erweitert.
+- `Growth Care` um Self-Hosting auf Anfrage ergänzt.
+
+### Changed
+- FAQ-Accordion-Höhe erhöht, damit längere Antworten zu DSGVO, Hosting und Self-Hosting sauber dargestellt werden.
+
 ## 2026-05-20
 
 ### Added
