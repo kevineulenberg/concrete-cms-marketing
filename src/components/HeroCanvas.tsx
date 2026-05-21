@@ -33,6 +33,9 @@ export default function HeroCanvas() {
     let mouseY = -9999;
     let targetMouseX = -9999;
     let targetMouseY = -9999;
+    let lastManualPointerAt = Number.NEGATIVE_INFINITY;
+    const shouldReduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const hasTouchLikePointer = window.matchMedia('(hover: none), (pointer: coarse)').matches;
 
     // Attempt to initialize WebGL
     try {
@@ -62,6 +65,7 @@ export default function HeroCanvas() {
           uniform vec2 u_resolution;
           uniform float u_time;
           uniform vec2 u_mouse;
+          uniform float u_pointer_strength;
 
           float hash(vec2 p) {
             return fract(sin(dot(p, vec2(127.1, 311.7))) * 43758.5453123);
@@ -93,7 +97,8 @@ export default function HeroCanvas() {
 
             vec2 m = (u_mouse.xy * 2.0 - u_resolution.xy) / min(u_resolution.x, u_resolution.y);
             float d = length(p - m);
-            float mouseInfluence = smoothstep(1.5, 0.0, d);
+            float mouseInfluence = smoothstep(1.5, 0.0, d) * u_pointer_strength;
+            float pointerGlow = smoothstep(0.85, 0.0, d) * max(u_pointer_strength - 1.0, 0.0);
 
             float time = u_time * 0.15;
             vec2 q = vec2(0.0);
@@ -111,7 +116,7 @@ export default function HeroCanvas() {
             vec3 color_orange = vec3(0.92, 0.42, 0.22); // Safety Orange (#E65F2B)
 
             vec3 col = mix(color_base, color_slate, clamp(f * 1.5, 0.0, 1.0));
-            col = mix(col, color_orange, clamp(length(q) * mouseInfluence * 0.55, 0.0, 1.0));
+            col = mix(col, color_orange, clamp(length(q) * mouseInfluence * 0.48 + pointerGlow * 0.12, 0.0, 1.0));
             col = mix(col, vec3(0.96, 0.95, 0.93), clamp(length(r) * 0.35, 0.0, 1.0));
 
             gl_FragColor = vec4(col, 1.0);
@@ -197,6 +202,7 @@ export default function HeroCanvas() {
       const rect = canvas.getBoundingClientRect();
       targetMouseX = e.clientX - rect.left;
       targetMouseY = e.clientY - rect.top;
+      lastManualPointerAt = performance.now();
     };
 
     const handleTouchMove = (e: TouchEvent) => {
@@ -204,6 +210,7 @@ export default function HeroCanvas() {
         const rect = canvas.getBoundingClientRect();
         targetMouseX = e.touches[0].clientX - rect.left;
         targetMouseY = e.touches[0].clientY - rect.top;
+        lastManualPointerAt = performance.now();
       }
     };
 
@@ -233,6 +240,19 @@ export default function HeroCanvas() {
         }
       }
 
+      const shouldAutoAnimatePointer = !shouldReduceMotion && (hasTouchLikePointer || width < 768);
+
+      if (shouldAutoAnimatePointer && performance.now() - lastManualPointerAt > 1200) {
+        const currentTime = (performance.now() - startTime) / 1000;
+        const radiusX = Math.min(width * 0.42, 260);
+        const radiusY = Math.min(height * 0.26, 150);
+
+        targetMouseX = width * 0.5
+          + Math.cos(currentTime * 0.62) * radiusX
+          + Math.sin(currentTime * 0.31) * radiusX * 0.25;
+        targetMouseY = height * 0.44 + Math.sin(currentTime * 0.72) * radiusY;
+      }
+
       // Smooth mouse coordinates damping
       if (targetMouseX !== -9999) {
         if (mouseX === -9999) {
@@ -253,6 +273,7 @@ export default function HeroCanvas() {
         const resolutionLocation = gl.getUniformLocation(program, "u_resolution");
         const timeLocation = gl.getUniformLocation(program, "u_time");
         const mouseLocation = gl.getUniformLocation(program, "u_mouse");
+        const pointerStrengthLocation = gl.getUniformLocation(program, "u_pointer_strength");
 
         gl.uniform2f(resolutionLocation, canvas.width, canvas.height);
         gl.uniform1f(timeLocation, currentTime);
@@ -260,6 +281,7 @@ export default function HeroCanvas() {
         // Pass mouse Y relative to bottom of canvas in WebGL coordinates
         const webglMouseY = mouseY !== -9999 ? canvas.height - mouseY : -9999;
         gl.uniform2f(mouseLocation, mouseX, webglMouseY);
+        gl.uniform1f(pointerStrengthLocation, shouldAutoAnimatePointer ? 1.45 : 1.0);
 
         gl.drawArrays(gl.TRIANGLES, 0, 6);
       } else if (ctx) {
