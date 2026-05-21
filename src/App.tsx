@@ -271,6 +271,15 @@ export default function App() {
                   </div>
                 ))}
               </div>
+
+              <a
+                href="https://payloadcms.com/compare/wordpress"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center gap-2 mt-8 bg-[#121212] hover:bg-[#E65F2B] text-white px-6 py-3 rounded-full font-mono text-xs uppercase tracking-widest font-bold transition-all hover:scale-105 duration-300"
+              >
+                Mehr erfahren <ArrowRight className="w-4 h-4" />
+              </a>
             </div>
 
             <div className="relative">
