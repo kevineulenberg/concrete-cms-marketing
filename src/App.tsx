@@ -12,7 +12,7 @@ import HeroCanvas from './components/HeroCanvas'
 
 interface PricingPlan {
   name: string;
-  price: string;
+  priceCents: number;
   description: string;
   badge?: string;
   features: string[];
@@ -28,11 +28,21 @@ interface PricingPlan {
 export default function App() {
   const [activeFaq, setActiveFaq] = useState<number | null>(null);
   const [selectedPlan, setSelectedPlan] = useState<string>("Growth Care");
+  const [billingCycle, setBillingCycle] = useState<"monthly" | "yearly">("monthly");
+
+  const isYearly = billingCycle === "yearly";
+  const yearlyDiscountCents = 1000;
+  const formatPrice = (priceCents: number) => {
+    const euros = Math.floor(priceCents / 100).toString();
+    const cents = (priceCents % 100).toString().padStart(2, "0");
+
+    return { euros, cents };
+  };
 
   const plans: PricingPlan[] = [
     {
       name: "Static Care",
-      price: "69,90",
+      priceCents: 5990,
       description: "Für einfache Websites, die zuverlässig online bleiben sollen und nur selten geändert werden.",
       features: [
         "Statisches Managed Hosting",
@@ -55,7 +65,7 @@ export default function App() {
     },
     {
       name: "CMS Care",
-      price: "99,90",
+      priceCents: 9990,
       badge: "Beliebte Wahl",
       description: "Für Teams, die Inhalte selbst ändern und unabhängiger von laufender Entwicklung bleiben möchten.",
       features: [
@@ -81,7 +91,7 @@ export default function App() {
     },
     {
       name: "Growth Care",
-      price: "124,90",
+      priceCents: 12490,
       badge: "Empfohlen",
       description: "Für Unternehmen und Agenturen, die ihre Website laufend erweitern und Entwicklungskosten senken wollen.",
       features: [
@@ -310,11 +320,53 @@ export default function App() {
             </p>
           </div>
 
+          <div className="mb-12 flex flex-col items-center gap-3">
+            <div className="inline-flex items-center gap-4 rounded-full bg-white/5 border border-white/10 px-4 py-3">
+              <button
+                type="button"
+                onClick={() => setBillingCycle("monthly")}
+                className={`font-mono text-[10px] sm:text-xs uppercase tracking-widest font-bold transition-colors ${
+                  !isYearly ? "text-white" : "text-[#A0A0A0] hover:text-white"
+                }`}
+              >
+                Monatlich
+              </button>
+              <button
+                type="button"
+                role="switch"
+                aria-checked={isYearly}
+                aria-label="Zwischen monatlicher und jährlicher Zahlung wechseln"
+                onClick={() => setBillingCycle(isYearly ? "monthly" : "yearly")}
+                className={`relative h-8 w-16 rounded-full border transition-colors ${
+                  isYearly ? "bg-[#E65F2B] border-[#E65F2B]" : "bg-black/40 border-white/10"
+                }`}
+              >
+                <span
+                  className={`absolute left-0 top-1 h-6 w-6 rounded-full bg-white shadow-md transition-transform ${
+                    isYearly ? "translate-x-8" : "translate-x-1"
+                  }`}
+                />
+              </button>
+              <button
+                type="button"
+                onClick={() => setBillingCycle("yearly")}
+                className={`font-mono text-[10px] sm:text-xs uppercase tracking-widest font-bold transition-colors ${
+                  isYearly ? "text-white" : "text-[#A0A0A0] hover:text-white"
+                }`}
+              >
+                Jährlich
+              </button>
+            </div>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-[#E65F2B] font-bold">
+              Jährlich bis zu 120 € sparen.
+            </span>
+          </div>
+
           {/* Pricing Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch">
             {plans.map((plan) => {
               const isSelected = selectedPlan === plan.name;
-              const [euroPrice, centPrice] = plan.price.split(",");
+              const displayPrice = formatPrice(plan.priceCents - (isYearly ? yearlyDiscountCents : 0));
               return (
                 <div 
                   key={plan.name}
@@ -338,13 +390,13 @@ export default function App() {
                       <span className="text-[#E65F2B] font-mono text-xs uppercase tracking-widest font-semibold">{plan.name}</span>
                       <div className="flex items-baseline gap-2 mt-3 mb-4">
                         <span className="font-sans font-extrabold tracking-tight">
-                          <span className="text-5xl sm:text-6xl">€{euroPrice}</span>
-                          <sup className="align-super text-xl sm:text-2xl ml-1">,{centPrice}</sup>
+                          <span className="text-5xl sm:text-6xl">€{displayPrice.euros}</span>
+                          <sup className="align-super text-xl sm:text-2xl ml-1">,{displayPrice.cents}</sup>
                         </span>
                         <span className="text-[#A0A0A0] text-xs font-mono uppercase tracking-wider">/ Monat</span>
                       </div>
                       <p className="text-xs text-[#A0A0A0] uppercase font-mono tracking-wider font-semibold border-b border-white/5 pb-4 mb-4 flex items-center gap-2">
-                        <Check className="w-3.5 h-3.5 text-[#E65F2B]" /> Monatlich kündbar
+                        <Check className="w-3.5 h-3.5 text-[#E65F2B]" /> {isYearly ? "Jährliche Zahlung" : "Monatlich kündbar"}
                       </p>
                       <p className="text-[#A0A0A0] text-xs sm:text-sm leading-relaxed">{plan.description}</p>
                     </div>
